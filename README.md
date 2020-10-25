@@ -112,7 +112,7 @@ PSPnet的Backbone是Dilated ResNet，是在原始的ResNet基础上改用了dila
 ![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v1.PNG)
 
 #### DeepLab v2
-* backbone: ResNet(4 layers)
+* backbone: ResNet(4 layers), resBlock [3,4,23,3]
 * ASPPmodule
 * 分类输出的feature map（stride控制feature map大小）进行Elementwise相加
 * Label下采样保证size
@@ -121,20 +121,49 @@ PSPnet的Backbone是Dilated ResNet，是在原始的ResNet基础上改用了dila
 ![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v2.PNG)
 
 **ASPP模块**
-通过设置不同dilation（[6,12,18,24]），去捕捉不同感受野的信息。
-通过加padding保持生成的feature map尺寸保持不变。
+* 通过设置不同dilation（[6,12,18,24]），去捕捉不同感受野的信息。
+* 通过加padding保持生成的feature map尺寸保持不变。
 ![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v2_ASPP.PNG)
 
 #### DeepLab v3
+* 在DeepLab v2基础上进行改进。
+
 **模型结构：**
 ![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v3.PNG)
+
+* Backbone: Multi-grid ResNet
+  * DeepLab v2的backbone基础上增加3个ResBlock。
+  * 给每个ResBlock里设置不同的Dilation（按Multi-Grid Rate = [1,2,4]设置)
+
 ![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v3_ASPPplus.PNG)
 
-### GCN
+相比于DeepLab v2中的ASPP模块，v3中除了dilated conv层外还增加了一个1x1Conv层和一个Adaptive Pool+Interpolation。
+  * 1x1Conv层: 改变channel大小，C维的升降维
+  * A daptive Pool（+Interpolation）:  改变HxW的大小，变成C维的HW=1x1的形状。
+  * 生成的feature maps用concat。
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v3_ASPPplus.PNG)
 
-### 实例分割与全景分割
-这部分我没太听懂，所以在学习笔记中就不放了。
+### GCN，实例分割与全景分割
+这部分我没太听懂，所以在学习笔记中就暂时不放了，之后再补上。
 
 
+
+## 部分课后作业代码集成
+* 放置了UNet，PSPnet和DeepLab v3以及train部分代码，该部分不能保证正确...
+* FCN在课程学习中我写的没有成功跑出来，因此没有放在这里。
+* 具体代码见models文件夹。
+* 没有放上数据集，所以可能跑不起来，仅供参考。
+* 
+```{bash}
+# deeplab
+python ./work/unet.py
+# deeplab
+python ./work/unet.py
+# deeplab
+python ./work/deeplab.py
+
+# train.py --
+
+```
 
 ## 实例： 使用UNet实现肝脏-肿瘤的分割
