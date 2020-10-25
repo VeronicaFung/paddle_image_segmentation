@@ -15,8 +15,6 @@
     - [GCN，实例分割与全景分割](#gcn实例分割与全景分割)
   - [部分课后作业代码集成](#部分课后作业代码集成)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 这篇学习笔记分为两部分，先是对课程进行一个大框架总结，记录一些概念性的东西；第二部分则是对于我来说，学习图像分割的目的是在医学图像数据、或者生物学网络上对特定生物学问题建模和预测，因此学习了AIstudio中大神用Unet对肝脏数据进行图像分割的项目，并试图自己写个简单的版本，第二部分可能因为时间的关系（而且python不是我很擅长的语言）效果可能很差。
 
