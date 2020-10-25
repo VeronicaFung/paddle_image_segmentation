@@ -24,12 +24,12 @@
 2. 自动驾驶
 3. 医学图像（CT、MRI、病理染色）：常用UNet
 4. 工业质检、分拣机器人
-![image](G:/library/baidu_deeplearning/图像分割/Image/FCN.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/FCN.PNG)
 ## 模型流程
-![image](G:/library/baidu_deeplearning/图像分割/Image/workflow.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/workflow.PNG)
 
 这个流程和之前上的“百度架构师手把手带你实现零基础小白到AI工程师的华丽蜕变”讲到的深度学习模型流程图很相似，为了方便理解，把当时课件里的图也贴过来：
-![image](G:/library/baidu_deeplearning/图像分割/Image/workflow2.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/workflow2.PNG)
 
 
 ## 评价指标
@@ -42,11 +42,11 @@
 ### FCN (Fully Convolutional Networks)
 Backbone: VGG
 **模型结构：**
-![image](G:/library/baidu_deeplearning/图像分割/Image/FCN.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/FCN.PNG)
 
 FCN with Multilayer Fusion:
 * 集成多层feature map；不同采样率；以Element-wise add为结合方式
-![image](G:/library/baidu_deeplearning/图像分割/Image/FCN2.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/FCN2.PNG)
 1. 与图像分类区别，替换FC为1x1Conv（只改变Channel大小）
 2. Feature map尺寸变大：
    1\) Upsampling: 上采样，双线性插值
@@ -69,7 +69,7 @@ FCN with Multilayer Fusion:
 4. 输出层与FCN相同，为一个1x1卷积，kernel个数为类别数。
 
 **模型结构：**
-![image](G:/library/baidu_deeplearning/图像分割/Image/UNet.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/UNet.PNG)
 
 *U-net的主要优点为：*
 
@@ -86,14 +86,14 @@ FCN with Multilayer Fusion:
 * 如何增大感受野？不同scale的“feature pyramid”，通过不同bin size的“adaptive pool + Conv1x1 + BN层 + Upsample(interpolate会输入的size)”concat在一起后再过Conv层得到分割结果。
 
 **模型结构：**
-![image](G:/library/baidu_deeplearning/图像分割/Image/PSPnet.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/PSPnet.PNG)
 
 PSPnet的Backbone是Dilated ResNet，是在原始的ResNet基础上改用了dilated Conv层（空洞卷积），可以增大感受野，不降低分辨率，同时不引入额外参数和计算量。
-![image](G:/library/baidu_deeplearning/图像分割/Image/PSPnet2.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/PSPnet2.PNG)
 
 **疑问：** 可以理解成对kernel进行插值填0？这里理解的不太好。
 
-![image](G:/library/baidu_deeplearning/图像分割/Image/PSPnet3.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/PSPnet3.PNG)
 
 
 ### DeepLab系列
@@ -109,7 +109,7 @@ PSPnet的Backbone是Dilated ResNet，是在原始的ResNet基础上改用了dila
 * Interpolation （8倍）
 * Output
 **模型结构：**
-![image](G:/library/baidu_deeplearning/图像分割/Image/deeplab_v1.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v1.PNG)
 
 #### DeepLab v2
 * backbone: ResNet(4 layers)
@@ -118,17 +118,17 @@ PSPnet的Backbone是Dilated ResNet，是在原始的ResNet基础上改用了dila
 * Label下采样保证size
 
 **模型结构：**
-![image](G:/library/baidu_deeplearning/图像分割/Image/deeplab_v2.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v2.PNG)
 
 **ASPP模块**
 通过设置不同dilation（[6,12,18,24]），去捕捉不同感受野的信息。
 通过加padding保持生成的feature map尺寸保持不变。
-![image](G:/library/baidu_deeplearning/图像分割/Image/deeplab_v2_ASPP.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v2_ASPP.PNG)
 
 #### DeepLab v3
 **模型结构：**
-![image](G:/library/baidu_deeplearning/图像分割/Image/deeplab_v3.PNG)
-![image](G:/library/baidu_deeplearning/图像分割/Image/deeplab_v3_ASPPplus.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v3.PNG)
+![image](https://github.com/VeronicaFung/paddle_image_segmentation/blob/main/Image/deeplab_v3_ASPPplus.PNG)
 
 ### GCN
 
