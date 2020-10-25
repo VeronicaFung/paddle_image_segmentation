@@ -155,14 +155,17 @@ PSPnet的Backbone是Dilated ResNet，是在原始的ResNet基础上改用了dila
 * 没有放上数据集，所以可能跑不起来，仅供参考。
 * 
 ```{bash}
-# deeplab
-python ./work/unet.py
-# deeplab
-python ./work/unet.py
-# deeplab
-python ./work/deeplab.py
+# unet
+./work/unet.py
+python train.py --net unet
 
-# train.py --
+# PSPnet
+python ./work/pspnet.py.py
+python train.py --net psp
+
+# deeplab v3
+python ./work/deeplab.py
+python train.py --net deeplab
 
 ```
 
